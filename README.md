@@ -1,4 +1,4 @@
-# euphonics
+# format_euphonics
 
 ## Usage
 Simply run the "format_euphonics" function on your desired input_file and output_file. 
