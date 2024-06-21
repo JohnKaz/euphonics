@@ -7,7 +7,9 @@ More specifically, it separates the original euphonized token into two separate 
 An example, featuring a postfixed euphonic is as follows:
 
 #### Original tokens:
-```8	μαςε	εγώ	PRON	_	Case=Gen|Number=Plur|Person=1|PronType=Prs	9	obl	_	MSeg=μας-ε|MGloss=us-euphonic```
+```
+8	μαςε	εγώ	PRON	_	Case=Gen|Number=Plur|Person=1|PronType=Prs	9	obl	_	MSeg=μας-ε|MGloss=us-euphonic
+```
 
 #### Modified tokens:
 ```
