@@ -64,7 +64,7 @@ def format_euphonics(input_file, output_file):
                     "head": token["head"],
                     "deprel": token["deprel"],
                     "deps": token["deps"],
-                    "misc": "_"
+                    "misc": token["misc"],
                 }
 
                 # token representing euphonic
@@ -99,7 +99,7 @@ def format_euphonics(input_file, output_file):
 
         # apply necessary changes to the heads of each token
         for i in range(len(new_sentence)):
-            if new_sentence[i]["head"] in change:
+            if new_sentence[i]["head"] in change and new_sentence[i]["upos"] != "EUPH":
                 new_sentence[i]["head"] = change[new_sentence[i]["head"]]
 
         # copy over original metadata
