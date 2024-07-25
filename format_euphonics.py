@@ -1,6 +1,8 @@
 from conllu import parse_incr, TokenList
 
-def format_euphonics(input_file, output_file):
+# splits all euphonized tokens found in a CoNLL-U file
+# and modifies each syntactic tree accordingly
+def euphonics(input_file, output_file):
     
     for sentence in parse_incr(input_file):
         new_sentence = TokenList() # TokenList used to form new modified sentence
@@ -12,6 +14,7 @@ def format_euphonics(input_file, output_file):
 
             # increase token's id value if necessary
             if increase_id > 0:
+                # keep track of id changes made to modify "head" values accordingly
                 change[token["id"]] = token["id"] + increase_id
                 token["id"] += increase_id
                 
@@ -72,8 +75,8 @@ def format_euphonics(input_file, output_file):
                     "id": token["id"] + 1 - euphonic_first,
                     "form": euph,
                     "lemma": "_",
-                    "upos": "EUPH",
-                    "xpos": "_",
+                    "upos": "_",
+                    "xpos": "EUPH",
                     "feats": "_",
                     "head": token["id"] + euphonic_first,
                     "deprel": "euph",
@@ -81,7 +84,7 @@ def format_euphonics(input_file, output_file):
                     "misc": "_",
                 }
 
-                # increase_id appropriately for all following tokens
+                # increase_id appropriately for all following tokens since we added an extra token
                 increase_id += 1
 
             # if euphonic is found, add appropriate split tokens, else add original token
@@ -99,7 +102,7 @@ def format_euphonics(input_file, output_file):
 
         # apply necessary changes to the heads of each token
         for i in range(len(new_sentence)):
-            if new_sentence[i]["head"] in change and new_sentence[i]["upos"] != "EUPH":
+            if new_sentence[i]["head"] in change and new_sentence[i]["xpos"] != "EUPH":
                 new_sentence[i]["head"] = change[new_sentence[i]["head"]]
 
         # copy over original metadata
