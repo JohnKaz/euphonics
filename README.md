@@ -1,7 +1,7 @@
 # euphonics
 
 ## Description
-This function modifies a CoNLL-U formatted sentence containing information about euphonics in its 10th (Misc) collumn.
+This function modifies all sentences in a CoNLL-U formatted file containing information about euphonics in their 10th (MISC) collumn.
 More specifically, it separates the original euphonized token into two separate tokens, one without the euphonic and one for the euphonic itself.
 
 An example, featuring a postfixed euphonic is as follows:
